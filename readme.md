@@ -12,12 +12,12 @@
  构造函数
 
   ```typescript
-  const root =new TreeNode(1)
+const root =new TreeNode(1)
   ```
 ### TreeNode.create(*arr*: *number*[])
   根据给的Array创建树
   ```typescript
-  const tree = TreeNode.create([1, 2, 3, 4, 5])
+const tree = TreeNode.create([1, 2, 3, 4, 5])
   ```
 
 
@@ -29,7 +29,7 @@
 构造函数
 
 ```typescript
-	const listnode = new ListNode()
+const listnode = new ListNode()
 ```
 
 ### ListNode.create(*arr*: *number*[])
@@ -37,7 +37,7 @@
  根据给的Array创建树
 
 ```typescript
-	const list = ListNode.create([-1, 5, 3, 4, 0]
+const list = ListNode.create([-1, 5, 3, 4, 0]
 ```
 
 
@@ -83,8 +83,8 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
 1. 默认为**小顶堆**。可以在初始化就插入数组，也可以后面手动使用insert插入
 
 ```typescript
-	const heap1 = new Heap()
-	const heap2 = new Heap([1,2,3])
+const heap1 = new Heap()
+const heap2 = new Heap([1,2,3])
 ```
 
 2. 自定义排序
@@ -94,7 +94,7 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
    \<=:升序（大顶堆）
 
 ```typescript
-	const heap3 = new Heap([], (a, b) => {
+const heap3 = new Heap([], (a, b) => {
 	return a >= b
 })
 ```
@@ -102,7 +102,7 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
 3. 复杂数据结构
 
 ```typescript
-	const heap3 = new Heap([], (a, b) => {
+const heap3 = new Heap([], (a, b) => {
 	if (a[1] === b[1]) {
 		return a[0] <= b[0]
 	}
@@ -116,14 +116,14 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
   插入
 
 ```typescript
-	heap3.insert(3)
+heap3.insert(3)
 ```
 
 ### extract(): T | null
   弹出
 
 ```typescript
-	heap3.extract()
+heap3.extract()
 ```
 
 ### isEmpty(): *boolean*
@@ -131,7 +131,7 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
 堆中是否有元素
 
 ```typescript
-	heap3.isEmpty()
+heap3.isEmpty()
 ```
 
 ### topValue(): *T*
@@ -139,7 +139,7 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
 得到堆顶的值
 
 ```typescript
-	heap3.topValue()
+heap3.topValue()
 ```
 
 ### get length(): *number*
@@ -147,7 +147,7 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
 得到堆中的元素个数
 
 ```typescript
-	heap3.length
+heap3.length
 ```
 
 
@@ -156,37 +156,37 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
   平衡二叉搜索树
 
 ```typescript
-  const avl = new AVLTree()
+const avl = new AVLTree()
 ```
 
 ### insert(*val*: *number*):*void*
   插入val
 
 ```typescript
-  avl.insert(2)
-  avl.insert(3)
-	avl.insert(1)
+avl.insert(2)
+avl.insert(3)
+avl.insert(1)
 ```
 
 ### getPre(*val*: *number*): AVLTreeNode | *null*
   得到小于x的最大值
 
 ```typescript
- avl.getNext(2)
+avl.getNext(2)
 ```
 
 ### getNext(*val*: *number*): AVLTreeNode | *null*
   得到大于x的最小值
 
 ```typescript
- avl.getPre(2)
+avl.getPre(2)
 ```
 
 ### remove(*val*: *number*):*boolean*
   移除x
 
 ```typescript
-  avl.remove(2)
+avl.remove(2)
 ```
 
 ### search(*val*: *number*): AVLTreeNode | *null*
@@ -194,7 +194,7 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
 查找是否已经有val
 
 ```typescript
-  avl.search(2)
+avl.search(2)
 ```
 
 ### min(): AVLTreeNode | *null*
@@ -202,14 +202,14 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
   得到当前最小值
 
 ```typescript
-  avl.min()
+avl.min()
 ```
 
 ### max(): AVLTreeNode | *null*
   得到当前最大值
 
 ```typescript
-  avl.max()
+avl.max()
 ```
 
 ### length
@@ -217,7 +217,7 @@ RunScript(["LFUCache", "put", "get", "put", "get", "get"]
 得到树中的元素个数
 
 ```typescript
-	avl.length
+avl.length
 ```
 
 
