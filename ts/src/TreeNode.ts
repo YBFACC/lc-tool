@@ -5,16 +5,18 @@
  * @license MIT
  */
 
-export class TreeNode<T = any> {
-  val: T
+export class TreeNode {
+  val: number
   left: TreeNode | null
   right: TreeNode | null
-  constructor(val: T) {
-    this.val = val
-    this.left = this.right = null
+  constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+    this.val = (val === undefined ? 0 : val)
+    this.left = (left === undefined ? null : left)
+    this.right = (right === undefined ? null : right)
   }
 
-  static create<T = any>(arr: T[]) {
+
+  static create(arr: number[]) {
     if (!Array.isArray(arr)) return null
     const res = new TreeNode(arr[0])
     let temp = [res]
