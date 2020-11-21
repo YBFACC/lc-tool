@@ -1,6 +1,10 @@
 "use strict";
+//https://www.cnblogs.com/xenny/p/9739600.html
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SegmentTree = void 0;
+/**
+ * @abstract 树状数组抽象类
+ */
 class abstract_SegmentTree {
     constructor(length) {
         this.length = length;
@@ -17,7 +21,14 @@ class abstract_SegmentTree {
             this._update(i, list[i] - list[i - 1]);
         }
     }
+    /**
+    * @description 计算lowbit
+    * @param x
+    */
     _lowbit(x) { return x & (-x); }
+    /**
+    * @description 更新A[i]，更新所有包含有A[i]位置
+    */
     _update(index, val) {
         const length = this.length;
         const sum1 = this.sum1;
@@ -27,6 +38,9 @@ class abstract_SegmentTree {
             index += this._lowbit(index);
         }
     }
+    /**
+    * @description 计算0-i的区间和
+    */
     _getSum(i) {
         const sum1 = this.sum1;
         i++;
@@ -37,10 +51,18 @@ class abstract_SegmentTree {
         }
         return res;
     }
+    /**
+    * @description 计算[x,y]的区间和
+    */
     _getInterval(start, end) {
         return this._getSum(end) - this._getSum(start - 1);
     }
 }
+/**
+ * @extends 树状数组抽象类
+ * @description 单点更新，区间查询
+ * @class 树状数组
+ */
 class SegmentTree extends abstract_SegmentTree {
     constructor(list) {
         super(list.length);
@@ -54,11 +76,19 @@ class SegmentTree extends abstract_SegmentTree {
     }
 }
 exports.SegmentTree = SegmentTree;
+/**
+ * @extends 树状数组抽象类
+ * @description 区间更新，单点更新
+ * @class 差分树状数组
+ */
 class diff_SegmentTree extends abstract_SegmentTree {
     constructor(list) {
         super(list.length);
         this._diffInit(list);
     }
+    /**
+    * @description 更新[x,y]的区间和
+    */
     updateInterval(x, y, val) {
         this._update(x, val);
         this._update(y + 1, -val);
@@ -67,6 +97,11 @@ class diff_SegmentTree extends abstract_SegmentTree {
         return this._getSum(i);
     }
 }
+/**
+ * @extends 树状数组抽象类
+ * @description 区间更新，区间查询
+ * @class 差分树状数组
+ */
 class two_SegmentTree extends abstract_SegmentTree {
     constructor(list) {
         super(list.length);

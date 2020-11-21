@@ -1,4 +1,11 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ListNode = void 0;
+/**
+ * @license MIT
+ * @copyright 2018 LoveofRedMoon
+ * @class
+ */
 class ListNode {
     constructor(val) {
         this.val = val;
@@ -13,6 +20,14 @@ class ListNode {
             temp = temp.next = new ListNode(arr[i]);
         return res.next;
     }
+    /**
+     * @static
+     * @param {Array} firstArr
+     * @param {Array} secondArr
+     * @param {Array} IntersectArr
+     * @returns {[ListNode, ListNode]}
+     * @memberof ListNode
+     */
     static createIntersectList(firstArr, secondArr, IntersectArr) {
         if (!Array.isArray(firstArr) ||
             !firstArr.length ||
@@ -24,6 +39,12 @@ class ListNode {
         ff.next = ss.next = i;
         return [f, s];
     }
+    /**
+     * @static
+     * @param {ListNode} root
+     * @returns {Array}
+     * @memberof ListNode
+     */
     static show(root) {
         if (!(root instanceof ListNode))
             return [];
@@ -35,6 +56,10 @@ class ListNode {
         }
         return res;
     }
+    /**
+     * @returns {Array}
+     * @memberof ListNode
+     */
     show() {
         if (!(this instanceof ListNode))
             return [];
@@ -46,15 +71,29 @@ class ListNode {
         }
         return res;
     }
+    /**
+     * 可视化展示
+     * @memberof ListNode
+     */
     visualShow() {
         console.log(ListNode.show(this).join(' -> '));
     }
+    /**
+     * @returns {ListNode}
+     * @memberof ListNode
+     */
     getLast() {
         let root = this;
         while (root.next)
             root = root.next;
         return root;
     }
+    /**
+     * @static
+     * @param {Number} n
+     * @returns {ListNode}
+     * @memberof ListNode
+     */
     static mock(n) {
         const arr = Array(n)
             .fill(0)
@@ -63,4 +102,4 @@ class ListNode {
         return ListNode.create(arr);
     }
 }
-module.exports = ListNode;
+exports.ListNode = ListNode;
