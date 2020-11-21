@@ -10,6 +10,6 @@ import { TreeNode } from "./src/TreeNode";
 
 // import { Trie } from "./src/Trie";
 
-// import { run as RunScript } from "./src/RunScript";
+import { RunScript } from "./src/RunScript";
 
-export { AVLTree, Heap, TreeNode, ListNode }
+export { AVLTree, Heap, TreeNode, ListNode, RunScript }

@@ -1,3 +1,8 @@
+/**
+ * @license MIT
+ * @copyright 2020 YBFACC
+ */
+
 export class Heap<T> {
   private container: T[]
   protected compare: Function

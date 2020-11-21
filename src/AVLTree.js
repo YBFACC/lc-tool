@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AVLTree = void 0;
-// AVL树节点
 class AVLTreeNode {
     constructor(val) {
         this.val = val;
@@ -9,7 +8,6 @@ class AVLTreeNode {
         this.height = 1;
     }
 }
-// 平衡状态
 const BLANCE_STATE = {
     UNBALANCE_LEFT: 2,
     UNBALANCE_RIGHT: -2,
@@ -17,7 +15,6 @@ const BLANCE_STATE = {
     SLIGHT_UNBALANCE_RIGHT: -1,
     BALANCE: 0
 };
-// AVLTree
 class AVLTree {
     constructor() {
         this.length = 0;
@@ -26,7 +23,6 @@ class AVLTree {
     _getHeight(node) {
         return node != null ? node.height : 0;
     }
-    // 有节点发生位置变化的都要更新Height（旋转）
     _updateHeigh(node) {
         node.height =
             Math.max(this._getHeight(node.left), this._getHeight(node.right)) + 1;
@@ -35,26 +31,22 @@ class AVLTree {
     _getBalanceState(node) {
         return this._getHeight(node.left) - this._getHeight(node.right);
     }
-    // 返回值的高度也变化了，但是返回值统一在blance中改变
     _leftRotate(node) {
         let res = node.right;
         node.right = res.left;
         res.left = this._updateHeigh(node);
         return res;
     }
-    // 返回值的高度也变化了，但是返回值统一在blance中改变
     _rightRotate(node) {
         let res = node.left;
         node.left = res.right;
         res.right = this._updateHeigh(node);
         return res;
     }
-    // 返回值的高度也变化了，但是返回值统一在blance中改变
     _leftRightRotate(node) {
         node.left = this._updateHeigh(this._leftRotate(node.left));
         return this._rightRotate(node);
     }
-    // 返回值的高度也变化了，但是返回值统一在blance中改变
     _rightLeftRotate(node) {
         node.right = this._updateHeigh(this._rightRotate(node.right));
         return this._leftRotate(node);
@@ -74,7 +66,6 @@ class AVLTree {
         else if (node.val > val) {
             node.left = this._insertNode(node.left, val);
         }
-        // 判断是否需要平衡，并进行平衡
         return this._doBalance(node);
     }
     search(val) {
@@ -134,7 +125,6 @@ class AVLTree {
             else {
                 let next = this.getNext(val);
                 node.val = next.val;
-                // 转为删除next节点
                 node.right = this._removeNode(node.right, node.val);
             }
         }
@@ -144,9 +134,7 @@ class AVLTree {
         if (node == null)
             return null;
         const balanceState = this._getBalanceState(node);
-        // 左侧偏重
         if (balanceState == BLANCE_STATE.UNBALANCE_LEFT) {
-            // 判断是否需要二次旋转
             const leftNodeBalanceState = this._getBalanceState(node.left);
             if (leftNodeBalanceState == BLANCE_STATE.SLIGHT_UNBALANCE_RIGHT) {
                 return this._updateHeigh(this._leftRightRotate(node));
@@ -154,10 +142,8 @@ class AVLTree {
             else {
                 return this._updateHeigh(this._rightRotate(node));
             }
-            // 右侧偏重
         }
         else if (balanceState == BLANCE_STATE.UNBALANCE_RIGHT) {
-            // 判断是否需要二次旋转
             const rightNodeBalanceState = this._getBalanceState(node.right);
             if (rightNodeBalanceState == BLANCE_STATE.SLIGHT_UNBALANCE_LEFT) {
                 return this._updateHeigh(this._rightLeftRotate(node));

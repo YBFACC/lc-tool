@@ -9,7 +9,6 @@ class Heap {
         }
         else {
             this.compare = (v1, v2) => {
-                //>= 小顶堆
                 return v1 >= v2;
             };
         }

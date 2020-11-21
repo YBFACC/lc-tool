@@ -1,6 +1,6 @@
 
 /**
- * @author 2020 YBFACC
+ * @copyright 2020 YBFACC
  * @license MIT
  */
 

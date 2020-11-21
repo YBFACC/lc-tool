@@ -1,16 +1,11 @@
 "use strict";
-/**
- * @class
- * @author 2018 LoveofRedMoon
- * @author 2020 YBFACC
- * @license MIT
- */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TreeNode = void 0;
 class TreeNode {
-    constructor(val) {
-        this.val = val;
-        this.left = this.right = null;
+    constructor(val, left, right) {
+        this.val = (val === undefined ? 0 : val);
+        this.left = (left === undefined ? null : left);
+        this.right = (right === undefined ? null : right);
     }
     static create(arr) {
         if (!Array.isArray(arr))

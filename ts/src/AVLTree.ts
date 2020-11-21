@@ -1,3 +1,7 @@
+/**
+ * @license MIT
+ * @copyright 2020 YBFACC
+ */
 
 // AVL树节点
 class AVLTreeNode {
@@ -67,7 +71,7 @@ export class AVLTree {
     return this._leftRotate(node)
   }
 
-  insert(val: number):void {
+  insert(val: number): void {
     this.length++
     this.root = this._insertNode(this.root, val)
   }
@@ -120,7 +124,7 @@ export class AVLTree {
     return res
   }
 
-  remove(val: number):boolean {
+  remove(val: number): boolean {
     let node = this.search(val)
     if (node == null || !this.root) return false
     this.length--

@@ -1,7 +1,7 @@
 /**
  * @class
- * @author 2018 LoveofRedMoon
- * @author 2020 YBFACC
+ * @copyright 2018 LoveofRedMoon
+ * @copyright 2020 YBFACC
  * @license MIT
  */
 
