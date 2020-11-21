@@ -6,7 +6,7 @@ declare class AVLTreeNode {
     constructor(val: number);
 }
 export declare class AVLTree {
-    root: AVLTreeNode | null;
+    private root;
     length: number;
     constructor();
     private _getHeight;

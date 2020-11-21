@@ -21,7 +21,7 @@ const BLANCE_STATE = {
 }
 // AVLTree
 export class AVLTree {
-  root: AVLTreeNode | null
+  private root: AVLTreeNode | null
   length = 0
   constructor() {
     this.root = null
@@ -67,7 +67,7 @@ export class AVLTree {
     return this._leftRotate(node)
   }
 
-  insert(val: number) {
+  insert(val: number):void {
     this.length++
     this.root = this._insertNode(this.root, val)
   }
@@ -120,7 +120,7 @@ export class AVLTree {
     return res
   }
 
-  remove(val: number) {
+  remove(val: number):boolean {
     let node = this.search(val)
     if (node == null || !this.root) return false
     this.length--

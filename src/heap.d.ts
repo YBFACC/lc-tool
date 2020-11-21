@@ -4,7 +4,7 @@ export declare class Heap<T> {
     constructor(arr?: T[], fn?: Function);
     insert(data: T): void;
     extract(): T | null;
-    swap(arr: T[], i: number, j: number): void;
+    private swap;
     isEmpty(): boolean;
     topValue(): T;
     get length(): number;

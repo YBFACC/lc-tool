@@ -1,15 +1,15 @@
 {
   "name": "lc-tool",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "js leetcode tool",
   "main": "index.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YBFACC/lc-tool/tree/master"
+    "url": "https://github.com/YBFACC/lc-tool"
   },
-  "homepage": "https://github.com/YBFACC/lc-tool/tree/master",
+  "homepage": "https://github.com/YBFACC/lc-tool",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": "tsc --build tsconfig.json"
   },
   "author": "YBFACC",
   "license": "MIT",

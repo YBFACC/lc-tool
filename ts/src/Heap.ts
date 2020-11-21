@@ -60,16 +60,16 @@ export class Heap<T> {
     return res
   }
 
-  swap(arr: T[], i: number, j: number): void {
+  private swap(arr: T[], i: number, j: number): void {
     ;[arr[i], arr[j]] = [arr[j], arr[i]]
   }
-  isEmpty() {
+  isEmpty(): boolean {
     return this.container.length === 0
   }
-  topValue() {
+  topValue(): T {
     return this.container[0]
   }
-  get length() {
+  get length(): number {
     return this.container.length
   }
 }
