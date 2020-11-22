@@ -5,6 +5,10 @@
  * @license MIT
  */
 
+interface treelist {
+  [index: number]: null | number
+}
+
 export class TreeNode {
   val: number
   left: TreeNode | null
@@ -15,8 +19,7 @@ export class TreeNode {
     this.right = (right === undefined ? null : right)
   }
 
-
-  static create(arr: number[]) {
+  static create(arr: treelist) {
     if (!Array.isArray(arr)) return null
     const res = new TreeNode(arr[0])
     let temp = [res]
