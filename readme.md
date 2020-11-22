@@ -6,6 +6,47 @@
 
 ⚠️*ps：ListNode，TreeNode，RunScript均参考[leetcode-class](https://github.com/LoveofRedMoon/LeetCode-Class)这个库。将代码精简并改成typescript。*
 
+## 使用方法
+
+ts：
+
+```typescript
+import { AVLTree, Heap, TreeNode, ListNode, RunScript } from 'lc-tool';
+
+function topKFrequent(nums: number[], k: number): number[] {
+  const heap = new Heap()
+  //....
+};
+
+topKFrequent(
+  //...
+)
+```
+
+js：
+
+```javascript
+const { AVLTree, Heap, TreeNode, ListNode, RunScript } = require('lc-tool')
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var topKFrequent = function (nums, k) {
+	const heap = new Heap()
+	//.....
+}
+
+topKFrequent(
+  //...
+)
+
+
+```
+
+可以配合vscode的用户片段，快速导入文件中。
+
 ## TreeNode
 ### constructor(*val*?: *number*, *left*?: TreeNode | *null*, *right*?: TreeNode | *null*) 
 
@@ -95,7 +136,7 @@ const heap2 = new Heap([1,2,3])
 
 ```typescript
 const heap3 = new Heap([], (a, b) => {
-	return a >= b
+  return a >= b
 })
 ```
 
@@ -103,10 +144,10 @@ const heap3 = new Heap([], (a, b) => {
 
 ```typescript
 const heap3 = new Heap([], (a, b) => {
-	if (a[1] === b[1]) {
-		return a[0] <= b[0]
-	}
-	return a[1] <= b[1]
+  if (a[1] === b[1]) {
+    return a[0] <= b[0]
+  }
+  return a[1] <= b[1]
 })
 
 ```
