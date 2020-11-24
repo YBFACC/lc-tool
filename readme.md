@@ -6,12 +6,14 @@
 
 ⚠️*ps：ListNode，TreeNode，RunScript均参考[leetcode-class](https://github.com/LoveofRedMoon/LeetCode-Class)这个库。将代码精简并改成typescript。*
 
+如果有错误，欢迎开[issues](https://github.com/YBFACC/lc-tool/issues)。
+
 ## 使用方法
 
 ts：
 
 ```typescript
-import { AVLTree, Heap, TreeNode, ListNode, RunScript } from 'lc-tool';
+import { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree } from 'lc-tool';
 
 function topKFrequent(nums: number[], k: number): number[] {
   const heap = new Heap()
@@ -26,7 +28,7 @@ topKFrequent(
 js：
 
 ```javascript
-const { AVLTree, Heap, TreeNode, ListNode, RunScript } = require('lc-tool')
+const { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree } = require('lc-tool')
 
 /**
  * @param {number[]} nums
@@ -260,6 +262,45 @@ avl.max()
 ```typescript
 avl.length
 ```
+
+
+
+## SegmentTree
+
+树状数组，单点更新，区间查询。
+
+使用注意：树状数组下标从1开始。
+
+### constructor(*list*: *number*[] | *number*)
+
+```typescript
+const a = [2, 3, 1, 5, 8, 2, 5, 9]
+
+const st1 = new SegmentTree(a)
+const st2 = new SegmentTree(a.length)
+```
+
+### update(*index*: *number*, *val*: *number*): *void*
+
+更新某个下标的值
+
+### query(*i*: *number*): *number*
+
+得到下标1-i的区间和
+
+```typescript
+console.log(st1.query(3))
+
+console.log(st1.update(1, 100))
+
+console.log(st1.query(3))
+```
+
+
+
+## Node
+
+例题[1650. 二叉树的最近公共祖先 III](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/)
 
 
 
