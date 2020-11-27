@@ -1,6 +1,6 @@
 {
   "name": "lc-tool",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "js leetcode tool",
   "main": "index.ts",
   "repository": {
