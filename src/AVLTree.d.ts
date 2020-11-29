@@ -3,6 +3,9 @@ declare class AVLTreeNode {
     height: number;
     left: AVLTreeNode | null;
     right: AVLTreeNode | null;
+    left_count: number;
+    rihgt_count: number;
+    count: number;
     constructor(val: number);
 }
 export declare class AVLTree {
@@ -12,10 +15,10 @@ export declare class AVLTree {
     private _getHeight;
     private _updateHeigh;
     private _getBalanceState;
-    private _leftRotate;
-    private _rightRotate;
-    private _leftRightRotate;
-    private _rightLeftRotate;
+    private _RR;
+    private _LL;
+    private _LR;
+    private _RL;
     insert(val: number): void;
     private _insertNode;
     search(val: number): AVLTreeNode | null;
@@ -28,5 +31,6 @@ export declare class AVLTree {
     private _minNode;
     max(): AVLTreeNode | null;
     private _maxNode;
+    search_count(val: number): number;
 }
 export {};

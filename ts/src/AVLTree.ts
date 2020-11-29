@@ -9,6 +9,9 @@ class AVLTreeNode {
   height: number
   left: AVLTreeNode | null
   right: AVLTreeNode | null
+  left_count = 0
+  rihgt_count = 0
+  count = 1
   constructor(val: number) {
     this.val = val
     this.left = this.right = null
@@ -34,11 +37,19 @@ export class AVLTree {
   private _getHeight(node: AVLTreeNode | null): number {
     return node != null ? node.height : 0
   }
-
+  
   // 有节点发生位置变化的都要更新Height（旋转）
   private _updateHeigh(node: AVLTreeNode): AVLTreeNode {
     node.height =
       Math.max(this._getHeight(node.left), this._getHeight(node.right)) + 1
+    const left = node.left
+    const right = node.right
+    if (left) { node.left_count = left.left_count + left.rihgt_count + left.count } else {
+      node.left_count = 0
+    }
+    if (right) { node.rihgt_count = right.left_count + right.rihgt_count + right.count } else {
+      node.rihgt_count = 0
+    }
     return node
   }
 
@@ -46,29 +57,29 @@ export class AVLTree {
     return this._getHeight(node.left) - this._getHeight(node.right)
   }
 
-  // 返回值的高度也变化了，但是返回值统一在blance中改变
-  private _leftRotate(node: AVLTreeNode): AVLTreeNode {
+   // 返回值的高度也变化了，但是返回值统一在blance中改变
+   private _RR(node: AVLTreeNode): AVLTreeNode {
     let res = node.right as AVLTreeNode
     node.right = res.left
     res.left = this._updateHeigh(node)
     return res
   }
   // 返回值的高度也变化了，但是返回值统一在blance中改变
-  private _rightRotate(node: AVLTreeNode): AVLTreeNode {
+  private _LL(node: AVLTreeNode): AVLTreeNode {
     let res = node.left as AVLTreeNode
     node.left = res.right
     res.right = this._updateHeigh(node)
     return res
   }
   // 返回值的高度也变化了，但是返回值统一在blance中改变
-  private _leftRightRotate(node: AVLTreeNode) {
-    node.left = this._updateHeigh(this._leftRotate(node.left as AVLTreeNode))
-    return this._rightRotate(node)
+  private _LR(node: AVLTreeNode) {
+    node.left = this._updateHeigh(this._RR(node.left as AVLTreeNode))
+    return this._LL(node)
   }
   // 返回值的高度也变化了，但是返回值统一在blance中改变
-  private _rightLeftRotate(node: AVLTreeNode) {
-    node.right = this._updateHeigh(this._rightRotate(node.right as AVLTreeNode))
-    return this._leftRotate(node)
+  private _RL(node: AVLTreeNode) {
+    node.right = this._updateHeigh(this._LL(node.right as AVLTreeNode))
+    return this._RR(node)
   }
 
   insert(val: number): void {
@@ -78,10 +89,15 @@ export class AVLTree {
 
   private _insertNode(node: AVLTreeNode | null, val: number): AVLTreeNode {
     if (node == null) return new AVLTreeNode(val)
-    if (node.val == val) return node
+    if (node.val == val) {
+      node.count++
+      return node
+    }
     if (node.val < val) {
+      // node.rihgt_count++
       node.right = this._insertNode(node.right, val)
     } else if (node.val > val) {
+      //node.left_count++
       node.left = this._insertNode(node.left, val)
     }
     // 判断是否需要平衡，并进行平衡
@@ -156,18 +172,18 @@ export class AVLTree {
       // 判断是否需要二次旋转
       const leftNodeBalanceState = this._getBalanceState(node.left as AVLTreeNode)
       if (leftNodeBalanceState == BLANCE_STATE.SLIGHT_UNBALANCE_RIGHT) {
-        return this._updateHeigh(this._leftRightRotate(node) as AVLTreeNode)
+        return this._updateHeigh(this._LR(node) as AVLTreeNode)
       } else {
-        return this._updateHeigh(this._rightRotate(node) as AVLTreeNode)
+        return this._updateHeigh(this._LL(node) as AVLTreeNode)
       }
       // 右侧偏重
     } else if (balanceState == BLANCE_STATE.UNBALANCE_RIGHT) {
       // 判断是否需要二次旋转
       const rightNodeBalanceState = this._getBalanceState(node.right as AVLTreeNode)
       if (rightNodeBalanceState == BLANCE_STATE.SLIGHT_UNBALANCE_LEFT) {
-        return this._updateHeigh(this._rightLeftRotate(node) as AVLTreeNode)
+        return this._updateHeigh(this._RL(node) as AVLTreeNode)
       } else {
-        return this._updateHeigh(this._leftRotate(node) as AVLTreeNode)
+        return this._updateHeigh(this._RR(node) as AVLTreeNode)
       }
     }
     return this._updateHeigh(node)
@@ -193,5 +209,20 @@ export class AVLTree {
       current = current.right
     }
     return current
+  }
+
+  search_count(val: number): number {
+    let node = this.root
+    let res = 0
+    while (node) {
+      if (node.val < val) {
+        res += node.left_count + node.count
+        node = node.right
+      }
+      else {
+        node = node.left
+      }
+    }
+    return res
   }
 }

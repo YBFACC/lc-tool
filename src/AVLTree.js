@@ -3,6 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AVLTree = void 0;
 class AVLTreeNode {
     constructor(val) {
+        this.left_count = 0;
+        this.rihgt_count = 0;
+        this.count = 1;
         this.val = val;
         this.left = this.right = null;
         this.height = 1;
@@ -26,30 +29,44 @@ class AVLTree {
     _updateHeigh(node) {
         node.height =
             Math.max(this._getHeight(node.left), this._getHeight(node.right)) + 1;
+        const left = node.left;
+        const right = node.right;
+        if (left) {
+            node.left_count = left.left_count + left.rihgt_count + left.count;
+        }
+        else {
+            node.left_count = 0;
+        }
+        if (right) {
+            node.rihgt_count = right.left_count + right.rihgt_count + right.count;
+        }
+        else {
+            node.rihgt_count = 0;
+        }
         return node;
     }
     _getBalanceState(node) {
         return this._getHeight(node.left) - this._getHeight(node.right);
     }
-    _leftRotate(node) {
+    _RR(node) {
         let res = node.right;
         node.right = res.left;
         res.left = this._updateHeigh(node);
         return res;
     }
-    _rightRotate(node) {
+    _LL(node) {
         let res = node.left;
         node.left = res.right;
         res.right = this._updateHeigh(node);
         return res;
     }
-    _leftRightRotate(node) {
-        node.left = this._updateHeigh(this._leftRotate(node.left));
-        return this._rightRotate(node);
+    _LR(node) {
+        node.left = this._updateHeigh(this._RR(node.left));
+        return this._LL(node);
     }
-    _rightLeftRotate(node) {
-        node.right = this._updateHeigh(this._rightRotate(node.right));
-        return this._leftRotate(node);
+    _RL(node) {
+        node.right = this._updateHeigh(this._LL(node.right));
+        return this._RR(node);
     }
     insert(val) {
         this.length++;
@@ -58,8 +75,10 @@ class AVLTree {
     _insertNode(node, val) {
         if (node == null)
             return new AVLTreeNode(val);
-        if (node.val == val)
+        if (node.val == val) {
+            node.count++;
             return node;
+        }
         if (node.val < val) {
             node.right = this._insertNode(node.right, val);
         }
@@ -137,19 +156,19 @@ class AVLTree {
         if (balanceState == BLANCE_STATE.UNBALANCE_LEFT) {
             const leftNodeBalanceState = this._getBalanceState(node.left);
             if (leftNodeBalanceState == BLANCE_STATE.SLIGHT_UNBALANCE_RIGHT) {
-                return this._updateHeigh(this._leftRightRotate(node));
+                return this._updateHeigh(this._LR(node));
             }
             else {
-                return this._updateHeigh(this._rightRotate(node));
+                return this._updateHeigh(this._LL(node));
             }
         }
         else if (balanceState == BLANCE_STATE.UNBALANCE_RIGHT) {
             const rightNodeBalanceState = this._getBalanceState(node.right);
             if (rightNodeBalanceState == BLANCE_STATE.SLIGHT_UNBALANCE_LEFT) {
-                return this._updateHeigh(this._rightLeftRotate(node));
+                return this._updateHeigh(this._RL(node));
             }
             else {
-                return this._updateHeigh(this._leftRotate(node));
+                return this._updateHeigh(this._RR(node));
             }
         }
         return this._updateHeigh(node);
@@ -173,6 +192,20 @@ class AVLTree {
             current = current.right;
         }
         return current;
+    }
+    search_count(val) {
+        let node = this.root;
+        let res = 0;
+        while (node) {
+            if (node.val < val) {
+                res += node.left_count + node.count;
+                node = node.right;
+            }
+            else {
+                node = node.left;
+            }
+        }
+        return res;
     }
 }
 exports.AVLTree = AVLTree;
