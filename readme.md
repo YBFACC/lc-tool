@@ -199,6 +199,23 @@ heap3.length
   平衡二叉搜索树
 
 ```typescript
+class AVLTreeNode {
+  val: number
+  height: number
+  left: AVLTreeNode | null
+  right: AVLTreeNode | null
+  left_count = 0 //左子树次数的统计
+  rihgt_count = 0 //右子树次数的统计
+  count = 1 // 当前节点出现的次数
+  constructor(val: number) {
+    this.val = val
+    this.left = this.right = null
+    this.height = 1
+  }
+}
+```
+
+```typescript
 const avl = new AVLTree()
 ```
 
@@ -262,6 +279,12 @@ avl.max()
 ```typescript
 avl.length
 ```
+
+### search_count(*val*: *number*): *number*
+
+统计小于val的节点出现次数。
+
+删除节点后，正确性未验证。
 
 
 
