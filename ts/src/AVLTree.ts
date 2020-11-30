@@ -94,10 +94,8 @@ export class AVLTree {
       return node
     }
     if (node.val < val) {
-      // node.rihgt_count++
       node.right = this._insertNode(node.right, val)
     } else if (node.val > val) {
-      //node.left_count++
       node.left = this._insertNode(node.left, val)
     }
     // 判断是否需要平衡，并进行平衡
