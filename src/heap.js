@@ -13,10 +13,10 @@ class Heap {
             };
         }
         if (Array.isArray(arr)) {
-            arr.forEach(this.insert.bind(this));
+            arr.forEach(this.offer.bind(this));
         }
     }
-    insert(data) {
+    offer(data) {
         const { container } = this;
         container.push(data);
         let index = container.length - 1;
@@ -28,16 +28,34 @@ class Heap {
             this.swap(container, index, parent);
             index = parent;
         }
+        return true;
     }
-    extract() {
+    clear() {
+        const { container } = this;
+        container.length = 0;
+    }
+    poll() {
         const { container } = this;
         if (!container.length) {
             return null;
         }
-        this.swap(container, 0, container.length - 1);
+        return this.removeAt(0);
+    }
+    remove(val) {
+        const { container } = this;
+        let index = container.indexOf(val);
+        if (index !== -1) {
+            this.removeAt(index);
+            return true;
+        }
+        return false;
+    }
+    removeAt(i) {
+        const { container } = this;
+        this.swap(container, i, container.length - 1);
         const res = container.pop();
         const length = container.length;
-        let index = 0, exchange = index * 2 + 1;
+        let index = i, exchange = index * 2 + 1;
         while (exchange < length) {
             let right = index * 2 + 2;
             if (right < length && this.compare(container[exchange], container[right])) {
@@ -59,10 +77,14 @@ class Heap {
     isEmpty() {
         return this.container.length === 0;
     }
-    topValue() {
+    peek() {
+        const { container } = this;
+        if (container.length === 0) {
+            return null;
+        }
         return this.container[0];
     }
-    get length() {
+    get size() {
         return this.container.length;
     }
 }

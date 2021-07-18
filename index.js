@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SegmentTree = exports.Node = exports.RunScript = exports.ListNode = exports.TreeNode = exports.Heap = exports.AVLTree = void 0;
+exports.Trie = exports.SegmentTree = exports.Node = exports.RunScript = exports.ListNode = exports.TreeNode = exports.Heap = exports.AVLTree = void 0;
 const AVLTree_1 = require("./src/AVLTree");
 Object.defineProperty(exports, "AVLTree", { enumerable: true, get: function () { return AVLTree_1.AVLTree; } });
 const Heap_1 = require("./src/Heap");
@@ -11,6 +11,8 @@ const ListNode_1 = require("./src/ListNode");
 Object.defineProperty(exports, "ListNode", { enumerable: true, get: function () { return ListNode_1.ListNode; } });
 const TreeNode_1 = require("./src/TreeNode");
 Object.defineProperty(exports, "TreeNode", { enumerable: true, get: function () { return TreeNode_1.TreeNode; } });
+const Trie_1 = require("./src/Trie");
+Object.defineProperty(exports, "Trie", { enumerable: true, get: function () { return Trie_1.Trie; } });
 const RunScript_1 = require("./src/RunScript");
 Object.defineProperty(exports, "RunScript", { enumerable: true, get: function () { return RunScript_1.RunScript; } });
 const Node_1 = require("./src/Node");

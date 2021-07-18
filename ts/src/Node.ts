@@ -10,12 +10,14 @@ export class Node {
   right: Node | null
   parent: Node | null
   random: Node | null
-  constructor(val?: number, left?: Node | null, right?: Node | null, random?: Node | null, parent?: Node | null) {
+  children: Node[]
+  constructor(val?: number, left?: Node | null, right?: Node | null, random?: Node | null, parent?: Node | null,children?: Node[]) {
     this.val = (val === undefined ? 0 : val)
     this.left = (left === undefined ? null : left)
     this.right = (right === undefined ? null : right)
     this.random = (random === undefined ? null : random)
     this.parent = (parent === undefined ? null : parent)
+    this.children = (children===undefined ? [] : children)
   }
 }
 

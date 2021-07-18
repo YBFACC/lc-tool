@@ -13,7 +13,7 @@
 ts：
 
 ```typescript
-import { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree } from 'lc-tool';
+import { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree, Trie } from 'lc-tool';
 
 function topKFrequent(nums: number[], k: number): number[] {
   const heap = new Heap()
@@ -28,7 +28,7 @@ topKFrequent(
 js：
 
 ```javascript
-const { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree } = require('lc-tool')
+const { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree, Trie } = require('lc-tool')
 
 /**
  * @param {number[]} nums
@@ -154,19 +154,32 @@ const heap3 = new Heap([], (a, b) => {
 
 ```
 
-### insert(data: T)
+### offer(data: T):*boolean*
 
   插入
 
 ```typescript
-heap3.insert(3)
+heap3.offer(3)
 ```
 
-### extract(): T | null
-  弹出
+### clear(): *void*
+
+清空堆
+
+### poll(): T | null
+
+  弹出堆首
 
 ```typescript
-heap3.extract()
+heap3.poll()
+```
+
+### remove(*val*: *T*): *boolean*
+
+删除堆中的特定元素（注意删除的时间复杂度是O(n)）
+
+```typescript
+heap3.remove(3)
 ```
 
 ### isEmpty(): *boolean*
@@ -177,20 +190,20 @@ heap3.extract()
 heap3.isEmpty()
 ```
 
-### topValue(): *T*
+### peek(): *T* | *null*
 
 得到堆顶的值
 
 ```typescript
-heap3.topValue()
+heap3.peek()
 ```
 
-### get length(): *number*
+### get size(): *number*
 
 得到堆中的元素个数
 
 ```typescript
-heap3.length
+heap3.size
 ```
 
 

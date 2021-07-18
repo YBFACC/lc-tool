@@ -1,6 +1,6 @@
 /**
  * @license MIT
- * @copyright 2020 YBFACC
+ * @copyright 2021 YBFACC
  */
 
 export class Heap<T> {
@@ -18,12 +18,12 @@ export class Heap<T> {
     }
 
     if (Array.isArray(arr)) {
-      arr.forEach(this.insert.bind(this))
+      arr.forEach(this.offer.bind(this))
     }
 
   }
 
-  insert(data: T) {
+  offer(data: T): boolean {
     const { container } = this
 
     container.push(data)
@@ -36,18 +36,37 @@ export class Heap<T> {
       this.swap(container, index, parent)
       index = parent
     }
+    return true
   }
 
-  extract(): T | null {
+  clear(): void {
+    const { container } = this
+    container.length = 0
+  }
+
+  poll(): T | null {
     const { container } = this
     if (!container.length) {
       return null
     }
+    return this.removeAt(0)
+  }
 
-    this.swap(container, 0, container.length - 1)
+  remove(val: T): boolean {
+    const { container } = this
+    let index = container.indexOf(val)
+    if (index !== -1) {
+      this.removeAt(index)
+      return true
+    }
+    return false
+  }
+  private removeAt(i: number): T | null {
+    const { container } = this
+    this.swap(container, i, container.length - 1)
     const res = container.pop() as T
     const length = container.length
-    let index = 0,
+    let index = i,
       exchange = index * 2 + 1
 
     while (exchange < length) {
@@ -71,10 +90,14 @@ export class Heap<T> {
   isEmpty(): boolean {
     return this.container.length === 0
   }
-  topValue(): T {
+  peek(): T | null {
+    const { container } = this
+    if (container.length === 0) {
+      return null
+    }
     return this.container[0]
   }
-  get length(): number {
+  get size(): number {
     return this.container.length
   }
 }
