@@ -6,4 +6,6 @@ import { TreeNode } from "./src/TreeNode";
 import { Trie } from "./src/Trie";
 import { RunScript } from "./src/RunScript";
 import { Node } from "./src/Node";
-export { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree, Trie };
+import { NumberOfTrailingZeros } from "./src/NumberOfTrailingZeros";
+import { LinkedEdge } from "./src/LinkedEdge";
+export { AVLTree, Heap, TreeNode, ListNode, RunScript, Node, SegmentTree, Trie, NumberOfTrailingZeros, LinkedEdge };

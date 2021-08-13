@@ -334,6 +334,30 @@ console.log(st1.query(3))
 
 
 
+## 链式前向星存图
+
+一种保存图的方法，适合边少的图
+
+### constructor(*n*: *number*) 
+
+初始化存边的数量
+
+### add(*a*: *number*, *b*: *number*, *c*: *number*)
+
+添加边。
+
+### search(*target*: *number*): *number*[][]
+
+查找以target从出发的边。以倒叙输出。
+
+
+
+## NumberOfTrailingZeros
+
+计算一个10进制数在2进制下，从最后一个1到末尾的0的个数
+
+
+
 ## Node
 
 例题[1650. 二叉树的最近公共祖先 III](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/)
